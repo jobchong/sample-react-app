@@ -85,6 +85,9 @@ export function Field(props) {
             <Button variant="contained" color="primary" style={{marginTop: '1em'}} onClick={()=> dispatch(addToTransactions(product))}>
               Pay
             </Button>
+          <Button variant="contained" color="primary" style={{marginTop: '1em'}} onClick={()=> setDisplay(`${display == 'tiles' ? 'transactions' : 'tiles'}`)}>
+            { display == 'tiles' ? 'See Transactions' : 'Hide Transactions'}
+            </Button>
           </Grid>
           
         </Grid>
@@ -94,7 +97,7 @@ export function Field(props) {
           name != "" ?
 	  <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
-              {allProducts.map((v, i) => (
+              { display == 'tiles' ? allProducts.map((v, i) => (
                 <Grid key={i} item xs={4} className={styles.productTile}>
 	          <Paper>
 	            <img alt='' src={props[v.imagePath]} className={styles.carImage}/>
@@ -109,7 +112,24 @@ export function Field(props) {
                     </div>
 	          </Paper>
                 </Grid>
-              ))}
+              )) :
+                transactions.length > 0 && transactions.map((v, i) => (
+                <Grid key={i} item xs={4} className={styles.productTile}>
+	          <Paper>
+	            <img alt='' src={props[v.imagePath]} className={styles.carImage}/>
+	            <p className={styles.paragraph}>{v.modelClass}{v.version}</p>
+                    <div style={{display: 'inline-block', float: 'right', marginTop: '0.3em', paddingRight: '10px'}}>
+                      <Button style={{marginRight: '0.5em'}}variant="contained" color="primary" onClick={()=> dispatch(addToProducts(v))}>
+                        +
+                      </Button>
+                      <Button variant="contained" color="secondary" onClick={()=> dispatch(removeFromProducts(v))}>
+                        -
+                      </Button>
+                    </div>
+	          </Paper>
+                </Grid>
+                ))
+              }
             </Grid>
           </Grid>
           :
