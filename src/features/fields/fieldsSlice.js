@@ -21,7 +21,8 @@ export const fieldsSlice = createSlice({
       state.user.selectedProducts.push(action.payload)
     },
     removeFromProducts: (state, action) => {
-      state.user.selectedProducts = state.user.selectedProducts.filter(a => a.modelId == action.payload)
+      let toreturn = state.user.selectedProducts.filter(a => a.modelId != action.payload)
+      state.user.selectedProducts = toreturn
     },
     addToTransactions: (state, action) => {
       // if there was a payment solution, call to external api should be here
