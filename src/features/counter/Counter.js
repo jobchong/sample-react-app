@@ -20,7 +20,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={()=>console.log(dispatch(increment()))}
         >
           +
         </button>
