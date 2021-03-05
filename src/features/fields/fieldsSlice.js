@@ -28,6 +28,7 @@ export const fieldsSlice = createSlice({
       // if there was a payment solution, call to external api should be here
       // e.g. fetch(https://api.stripe.com/...).then(updateReduxState(response))
       state.user.previousTransactions = state.user.previousTransactions.concat(action.payload)
+      state.user.selectedProducts = []
     },
   },
 })
