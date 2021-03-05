@@ -106,7 +106,7 @@ export function Field(props) {
                       <Button style={{marginRight: '0.5em'}}variant="contained" color="primary" onClick={()=> dispatch(addToProducts(v))}>
                         +
                       </Button>
-                      <Button variant="contained" color="secondary" onClick={()=> dispatch(removeFromProducts(v))}>
+                      <Button variant="contained" color="secondary" onClick={()=> dispatch(removeFromProducts(v.modelId))}>
                         -
                       </Button>
                     </div>
@@ -118,14 +118,6 @@ export function Field(props) {
 	          <Paper>
 	            <img alt='' src={props[v.imagePath]} className={styles.carImage}/>
 	            <p className={styles.paragraph}>{v.modelClass}{v.version}</p>
-                    <div style={{display: 'inline-block', float: 'right', marginTop: '0.3em', paddingRight: '10px'}}>
-                      <Button style={{marginRight: '0.5em'}}variant="contained" color="primary" onClick={()=> dispatch(addToProducts(v))}>
-                        +
-                      </Button>
-                      <Button variant="contained" color="secondary" onClick={()=> dispatch(removeFromProducts(v))}>
-                        -
-                      </Button>
-                    </div>
 	          </Paper>
                 </Grid>
                 ))
